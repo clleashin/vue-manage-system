@@ -35,21 +35,22 @@ export default {
                 password: '123123',
             },
             rules: {
-                username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
-                password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
+                username: [{ required: true, message: '请输入用户名', pattern: /^admin$/, trigger: 'blur' }],
+                password: [{ required: true, pattern: /^123123$/, message: '请输入密码', trigger: 'blur' }],
             },
         };
     },
     
     methods: {
         submitForm() {
-            this.$refs.login.validate(valid => {
+            this.$refs['login'].validate(valid => {
                 if (valid) {
                     this.$message.success('登录成功');
                     localStorage.setItem('ms_username', this.param.username);
-                    this.$router.push('/');
+                    this.$router.push('/dashboard');
                 } else {
                     this.$message.error('请输入账号和密码');
+                    this.$router.push('/login');
                     console.log('error submit');
                     return false;
                 }
