@@ -15,11 +15,6 @@ export default new Router({
             meta: { title: '自述文件' },
             children: [
                 {
-                    path: '/dashboard',
-                    component: () => import(/* webpackChunkName: "dashboard" */ '../components/page/Dashboard.vue'),
-                    meta: { title: '首页' }
-                },
-                {
                     path: '/transaction',
                     component: () => import(/* webpackChunkName: "transaction" */ '../components/page/Transaction.vue'),
                     meta: { title: '交易信息' }

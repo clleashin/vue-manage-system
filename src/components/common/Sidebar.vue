@@ -57,11 +57,6 @@ export default {
             collapse: false,
             items: [
                 {
-                    icon: 'el-icon-lx-home',
-                    index: 'dashboard',
-                    title: '首页'
-                },
-                {
                     icon: 'el-icon-lx-cascades',
                     index: 'transaction',
                     title: '交易信息'
