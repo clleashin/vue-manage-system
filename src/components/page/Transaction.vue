@@ -106,27 +106,27 @@
 
         <!-- 修改交易信息弹出框 -->
         <el-dialog title="编辑交易信息" :visible.sync="editVisible" width="30%">
-            <el-form ref="form" :model="form" label-width="70px">
+            <el-form ref="editTransactionFormRef" :model="editTransactionForm" label-width="70px">
                 <el-form-item label="交易编号">
-                    <el-input v-model="form.transaction_id" disabled></el-input>
+                    <el-input v-model="editTransactionForm.transaction_id" disabled></el-input>
                 </el-form-item>
                 <el-form-item label="交易额">
-                    <el-input v-model="form.volume"></el-input>
+                    <el-input v-model="editTransactionForm.volume"></el-input>
                 </el-form-item>
                  <el-form-item label="交易单位">
-                    <el-input v-model="form.unit"></el-input>
+                    <el-input v-model="editTransactionForm.unit"></el-input>
                 </el-form-item>
                  <el-form-item label="交易日期时间">
-                    <el-input v-model="form.time_date"></el-input>
+                    <el-input v-model="editTransactionForm.time_date"></el-input>
                 </el-form-item>
                  <el-form-item label="交易类型">
-                    <el-input v-model="form.resource"></el-input>
+                    <el-input v-model="editTransactionForm.resource"></el-input>
                 </el-form-item>
                  <el-form-item label="交易物品类别">
-                    <el-input v-model="form.category"></el-input>
+                    <el-input v-model="editTransactionForm.category"></el-input>
                 </el-form-item>
                  <el-form-item label="注释">
-                    <el-input v-model="form.explanation"></el-input>
+                    <el-input v-model="editTransactionForm.explanation"></el-input>
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
@@ -156,13 +156,13 @@ export default {
             idx: -1,
             id: -1,
     addTransactionForm: {
-        transaction_id:"",
-        volume:"",
-        unit:"",
-        time_date:"",
-        resource:"",
-        category:"",
-        explanation:""
+        transaction_id:'',
+        volume:'',
+        unit:'',
+        time_date:'',
+        resource:'',
+        category:'',
+        explanation:''
       },
       addTransactionFormRules: {
         transaction_id: [
@@ -198,7 +198,14 @@ export default {
           { require: true, trigger: "blur"}
         ]
       },
-      editTransactionForm: {},
+      editTransactionForm: {
+        volume:'',
+        unit:'',
+        time_date:'',
+        resource:'',
+        category:'',
+        explanation:''
+      },
       editTransactionFormRules: {
         volume: [
           { required: true, message: "请输入交易额", trigger: "blur" },
@@ -268,7 +275,7 @@ export default {
         // 编辑操作
         handleEdit(index, row) {
             this.idx = index;
-            this.form = row;
+            this.editTransactionForm = row;
             this.editVisible = true;
         },
         // 保存编辑
