@@ -9,6 +9,7 @@
         <div class="container">
             <div class="handle-box">
                 <el-input v-model="dailyquery.account_type" placeholder="输入账目类别" class="handle-input mr10"></el-input>
+                <el-input v-model="dailyquery.date" placeholder="输入记录日期" class="handle-input mr10"></el-input>
                 <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>
             </div>
             <el-table
@@ -43,7 +44,7 @@
 <script>
 import { fetchDailyData } from '../../api/dailyjournal';
 export default {
-    name: 'dailyjournal',
+    name: 'Dailyjournal',
     data() {
         return {
             dailyquery: {

@@ -140,11 +140,17 @@
 <script>
 import { fetchData } from '../../api/transactions';
 export default {
-    name: 'transaction',
+    name: 'Transaction',
     data() {
         return {
             query: {
                 transaction_id: '',
+                volume:'',
+                unit:'',
+                time_date:'',
+                resource:'',
+                category:'',
+                explanation:'',
                 pageIndex: 1,
                 pageSize: 10
             },
@@ -231,6 +237,11 @@ export default {
         };
     },
     created() {
+        //this.axios.get('http://127.0.0.1:8003/transactions')
+        //.then((res) => {
+        //  this.getData=res.data;
+        //  console.log(this.getData);
+        //});
         this.getData();
     },
     methods: {

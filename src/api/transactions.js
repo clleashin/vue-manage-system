@@ -3,7 +3,7 @@ import Axios from 'axios';
 
 export const fetchData = query => {
     return request({
-        url: './table.json',
+        url: '/transactions/',
         method: 'get',
         params: query
     });
@@ -11,7 +11,7 @@ export const fetchData = query => {
 
 //export const addList = (data) => {
 //    return request({
-//      url: './table.json',
+//      url: '/transactions/',
 //      method: 'post',
 //      data  
 //    });
