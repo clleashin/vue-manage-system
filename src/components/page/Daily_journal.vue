@@ -22,9 +22,9 @@
             >
                 <el-table-column type="index" align=center></el-table-column>
                 <el-table-column prop="account_type" label="账目类别" align="center"></el-table-column>
+                <el-table-column prop="date" label="记录日期" align=center></el-table-column>
                 <el-table-column prop="net_profit" label="盈亏量" align=center></el-table-column>
                 <el-table-column prop="unit" label="计量单位" align=center></el-table-column>
-                <el-table-column prop="date" label="记录日期" align=center></el-table-column>
                 <el-table-column prop="balance" label="结余" align=center></el-table-column>
             </el-table>
             <div class="pagination">
@@ -49,6 +49,10 @@ export default {
         return {
             dailyquery: {
                 account_type: '',
+                date:'',
+                net_profit:'',
+                unit:'',
+                balance:'',
                 pageIndex: 1,
                 pageSize: 10
             },
@@ -68,7 +72,7 @@ export default {
             fetchDailyData(this.dailyquery).then(res => {
                 console.log(res);
                 this.tableData = res.list;
-                this.pageTotal = res.pageTotal || 50;
+                this.pageTotal = res.pageTotal || 100;
             });
         },
         // 触发搜索按钮

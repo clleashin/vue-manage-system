@@ -8,15 +8,15 @@ export function fetchData(query) {
     });
 };
 
-//export const addList = (data) => {
-//    return request({
-//      url: '/transactions/',
-//      method: 'post',
-//      data  
-//    });
-//};
+export function addList(data) {
+    return request({
+      url: '/transactions/add/',
+      method: 'post',
+      params: data
+    });
+};
 
-//export const editList = (data) => {
+//export function editList(data) {
 //    return request({
 //        url: 'transactions/${data.transaction_id}',
 //        method: 'put',
@@ -24,7 +24,7 @@ export function fetchData(query) {
 //    });
 //};
 
-//export const deleteList = (transaction_id) => {
+//export function deleteList(transaction_id) {
 //    return request({
 //        url: 'transactions/${transaction_id}',
 //        method: 'delete'

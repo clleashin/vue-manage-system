@@ -30,7 +30,6 @@
                 <el-table-column prop="net_profit" label="利润" align=center></el-table-column>
                 <el-table-column prop="balance" label="结余" align=center></el-table-column>
                 <el-table-column prop="date" label="记录日期" align=center></el-table-column>
-                <el-table-column prop="recorder" label="记录人工作编号" align=center></el-table-column>
             </el-table>
             <div class="pagination">
                 <el-pagination
@@ -59,7 +58,6 @@ export default {
                 net_profit:'',
                 balance:'',
                 date:'',
-                recorder:'',
                 pageIndex: 1,
                 pageSize: 10
             },
@@ -71,11 +69,6 @@ export default {
         };
     },
     created() {
-        //this.axios.get('http://127.0.0.1:8003/monthly_analysis')
-        //.then((response) => {
-        //    this.tableData = response.data;
-        //    console.log(this.tableData);
-        //})
         this.getData();
     },
     methods: {
@@ -84,7 +77,7 @@ export default {
             fetchMonthlyData(this.monthlyquery).then(res => {
                 console.log(res);
                 this.tableData = res.list;
-                this.pageTotal = res.pageTotal || 50;
+                this.pageTotal = res.pageTotal || 24;
             });
         },
         // 触发搜索按钮

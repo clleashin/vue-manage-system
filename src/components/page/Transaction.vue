@@ -138,7 +138,7 @@
 </template>
 
 <script>
-import { fetchData } from '../../api/transactions';
+import { fetchData, addList } from '../../api/transactions';
 export default {
     name: 'Transaction',
     data() {
@@ -237,47 +237,59 @@ export default {
         };
     },
     created() {
-        //this.axios.get('http://127.0.0.1:8003/transactions')
-        //.then((res) => {
-        //  this.getData=res.data;
-        //  console.log(this.getData);
-        //});
         this.getData();
     },
     methods: {
-        // List parsing
-        // processList(res) {
-        //   var i_transaction = obj['list'];
-        //   for (var i = 0; i < i_transaction.length; i++) {
-        //     var 
-            
-        //   }
-        // 获取数据
         getData() {
             fetchData(this.query).then(res => {
                 console.log(res);
                 this.tableData = res.list;
-                // this.pageTotal = res.pageTotal || 50;
+                this.pageTotal = res.pageTotal || 10;
             });
         },
         // 触发搜索按钮
         handleSearch() {
-            this.$set(this.query, 'transaction_id', );
+            this.$set(this.query, 'transaction_id');
             this.getData();
         },
         // 新增操作
          addTransaction() {
-        this.$refs.addTransactionFormRef.validate(async valid => {
-        if (!valid) return;
-        const { data } = await this.$http.post("users", this.addTransactionForm);
-        if (data.meta.status !== 201) {
-          this.$message.error("新增失败");
-        }
-        this.$message.success("新增成功");
-        this.dialogVisible = false;
-        this.getTransactionList();
-        });
-        },
+        // 二次进行用户数据的验证
+           this.$refs.addTransactionForm.validate(valid => {
+             if (valid) {
+               //发起新增交易信息请求
+               addList(this.addTransactionForm)
+               .then(res => {
+                 if (res.data.meta.status === 201) {
+                   this.$message({
+                     type: 'success',
+                     message: '新增交易信息成功'
+                   })
+                   //数据刷新
+                   this.dialogVisible = false
+                   //表单元素的数据重置
+                   this.$refs.addTransactionForm.resetFields()
+                   this.init()
+                 } else {
+                   this.$message({
+                     type: 'error',
+                     message: '新增交易信息失败'
+                   })
+                 }
+               })
+                  .catch( () => {
+                    this.$message({
+                      type: 'error',
+                      message: '新增交易信息失败'
+                    })
+                  })
+             } else {
+               //中止此次请求
+               return false
+             }
+           })
+    },
+
         // 删除操作
         handleDelete(index, row) {
             // 二次确认删除
