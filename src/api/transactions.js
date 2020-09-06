@@ -1,7 +1,6 @@
 import request from '../utils/request';
-import Axios from 'axios';
 
-export const fetchData = query => {
+export function fetchData(query) {
     return request({
         url: '/transactions/',
         method: 'get',

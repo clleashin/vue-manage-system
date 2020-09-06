@@ -25,7 +25,7 @@
                 <el-table-column prop="transaction_id" label="交易编号" align="center"></el-table-column>
                 <el-table-column prop="volume" label="交易额" align=center></el-table-column>
                 <el-table-column prop="unit" label="交易单位" align=center></el-table-column>
-                <el-table-column prop="time_date" label="交易日期时间" align=center>
+                <el-table-column prop="date_time" label="交易日期时间" align=center>
 
                   
                 </el-table-column>
@@ -83,8 +83,8 @@
         <el-form-item label="交易单位" prop="unit">
           <el-input v-model="addTransactionForm.unit"></el-input>
         </el-form-item>
-        <el-form-item label="交易日期时间" prop="time_date">
-          <el-input v-model="addTransactionForm.time_date"></el-input>
+        <el-form-item label="交易日期时间" prop="date_time">
+          <el-input v-model="addTransactionForm.date_time"></el-input>
         </el-form-item>
         <el-form-item label="交易类型" prop="resource">
           <el-input v-model="addTransactionForm.resource"></el-input>
@@ -117,7 +117,7 @@
                     <el-input v-model="editTransactionForm.unit"></el-input>
                 </el-form-item>
                  <el-form-item label="交易日期时间">
-                    <el-input v-model="editTransactionForm.time_date"></el-input>
+                    <el-input v-model="editTransactionForm.date_time"></el-input>
                 </el-form-item>
                  <el-form-item label="交易类型">
                     <el-input v-model="editTransactionForm.resource"></el-input>
@@ -147,7 +147,7 @@ export default {
                 transaction_id: '',
                 volume:'',
                 unit:'',
-                time_date:'',
+                date_time:'',
                 resource:'',
                 category:'',
                 explanation:'',
@@ -165,7 +165,7 @@ export default {
         transaction_id:'',
         volume:'',
         unit:'',
-        time_date:'',
+        date_time:'',
         resource:'',
         category:'',
         explanation:''
@@ -191,7 +191,7 @@ export default {
             require: true, trigger: "blur"
           }
         ],
-        time_date: [
+        date_time: [
           { required: true, message: "请输入交易日期时间", trigger: "blur" },
           { require: true, trigger: "blur" }
         ],
@@ -207,7 +207,7 @@ export default {
       editTransactionForm: {
         volume:'',
         unit:'',
-        time_date:'',
+        date_time:'',
         resource:'',
         category:'',
         explanation:''
@@ -221,7 +221,7 @@ export default {
           { required: true, message: "请输入交易单位", trigger: "blur" },
           { require: true, trigger: "blur" }
         ],
-        time_date: [
+        date_time: [
           { required: true, message: "请输入交易日期时间", trigger: "blur"},
           { require: true, trigger: "blur"}
         ],
@@ -245,12 +245,19 @@ export default {
         this.getData();
     },
     methods: {
+        // List parsing
+        // processList(res) {
+        //   var i_transaction = obj['list'];
+        //   for (var i = 0; i < i_transaction.length; i++) {
+        //     var 
+            
+        //   }
         // 获取数据
         getData() {
             fetchData(this.query).then(res => {
                 console.log(res);
                 this.tableData = res.list;
-                this.pageTotal = res.pageTotal || 50;
+                // this.pageTotal = res.pageTotal || 50;
             });
         },
         // 触发搜索按钮
