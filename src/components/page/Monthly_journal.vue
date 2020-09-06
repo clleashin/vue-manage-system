@@ -77,12 +77,12 @@ export default {
             fetchMonthlyData(this.monthlyquery).then(res => {
                 console.log(res);
                 this.tableData = res.list;
-                this.pageTotal = res.pageTotal || 24;
+                this.pageTotal = res.pageTotal;
             });
         },
         // 触发搜索按钮
         handleSearch() {
-            this.$set(this.monthlyquery, 'month', );
+            this.$set(this.monthlyquery, 'month');
             this.getData();
         },
         // 分页导航

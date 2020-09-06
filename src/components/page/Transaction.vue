@@ -244,7 +244,7 @@ export default {
             fetchData(this.query).then(res => {
                 console.log(res);
                 this.tableData = res.list;
-                this.pageTotal = res.pageTotal || 10;
+                this.pageTotal = res.pageTotal;
             });
         },
         // 触发搜索按钮
@@ -301,6 +301,10 @@ export default {
                     this.tableData.splice(index, 1);
                 })
                 .catch(() => {});
+        },
+        // 删除交易信息
+        deleteList() {
+          
         },
         // 编辑操作
         handleEdit(index, row) {
