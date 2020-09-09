@@ -2,7 +2,7 @@ import request from '../utils/request';
 
 export const fetchDailyData = dailyquery => {
     return request({
-        url: './dailyjournal.json',
+        url: '/daily/',
         method: 'get',
         params: dailyquery
     });

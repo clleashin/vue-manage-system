@@ -12,21 +12,53 @@ export function addList(data) {
     return request({
       url: '/transactions/add/',
       method: 'post',
-      params: data
+      data: {
+            list: [
+                {
+                    "transaction_id": data.transaction_id,
+                    "volume": data.volume,
+                    "unit": data.unit,
+                    "date_time": data.date_time,
+                    "resource": data.resource,
+                    "category": data.category,
+                    "explanation": data.explanation
+                }
+            ]
+        }
     });
 };
 
-//export function editList(data) {
-//    return request({
-//        url: 'transactions/${data.transaction_id}',
-//        method: 'put',
-//       data
-//    });
-//};
+ export function editList(data) {
+    return request({
+        url: '/transactions/change/',
+        method: 'put',
+        data: {
+          list:[
+            {
+                "transaction_id": data.transaction_id,
+                "volume": data.volume,
+                "unit": data.unit,
+                "date_time": data.date_time,
+                "resource": data.resource,
+                "category": data.category,
+                "explanation": data.explanation
+            }
+          ]
+      }
+   });
+};
 
-//export function deleteList(transaction_id) {
-//    return request({
-//        url: 'transactions/${transaction_id}',
-//        method: 'delete'
-//    });
-//};
+export function deleteList(data) {
+   return request({
+       url: '/transactions/delete/',
+       method: 'delete',
+       data
+   });
+};
+
+export function queryTransaction(transaction_id) {
+    return request({
+        url: '/transactions/' + transaction_id + '/',
+        method: 'get'
+    })
+}
