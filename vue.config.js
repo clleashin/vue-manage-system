@@ -1,5 +1,6 @@
 module.exports = {
-    baseUrl: 'http://127.0.0.1:8083',
+    publicPath: '/',
+    baseUrl: 'http://124.70.178.153:8083',
     assetsDir: 'static',
     productionSourceMap: false,
     // devServer: {
